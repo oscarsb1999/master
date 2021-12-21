@@ -1,4 +1,4 @@
-import dwavebinarycsp
+import dwavebinarycsp 
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
 
@@ -25,5 +25,12 @@ min_energy = next(response.data(['energy']))[0]
 print(response)
 
 total = 0
-for sample, energy, ocurrences in response.data(['sample', 'energy', 'num_ocurrences']):
-    total = total + 
+for sample, energy, occurences in response.data(['sample', 'energy', 'num_occurrences']):
+    total = total + occurences
+    # if energy == min_energy:
+    horario = 'Horario de trabajo' if sample['horario'] else 'Fuera de horario'
+    ubicacion = 'presencial' if sample['ubicacion'] else 'remota'
+    duracion = 'corta' if sample['duracion'] else 'larga'
+    asistencia = 'obligatoria' if sample['asistencia'] else 'opcional'
+    print("{}: {} sesion de tipo {}, de duracion {} con asistencia {}"
+                .format(occurences, horario, ubicacion, duracion, asistencia))
