@@ -19,7 +19,7 @@ bqm = dwavebinarycsp.stitch(csp)
 print(bqm.linear)
 print(bqm.quadratic)
 
-response = sampler.sample(bpm, num_reads= 5000)
+response = sampler.sample(bqm, num_reads= 5000)
 min_energy = next(response.data(['energy']))[0]
 
 print(response)
